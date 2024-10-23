@@ -18,12 +18,7 @@
 
 ```
 git clone https://github.com/sfakhri/we_cine_v2.git
-$ cd app_yellow_consulting
-
-application summary please elaborate on how plan to use our API
-
-# Utilisation de Symfony CLI
-symfony new --webapp symfony --version=6.4.*
+$ cd we_cine_v2
 
 # install dependencies
 $ composer install
