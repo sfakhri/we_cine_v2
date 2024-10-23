@@ -1,0 +1,50 @@
+grumphp:
+    stop_on_failure: true
+    hooks_dir: "app/symfony/vendor/bin"
+    tasks:
+        git_branch_name:
+            additional_modifiers: ''
+            allow_detached_head: true
+
+        git_commit_message:
+            allow_empty_message: false
+            enforce_capitalized_subject: false
+            enforce_no_subject_punctuations: false
+            enforce_no_subject_trailing_period: true
+            enforce_single_lined_subject: true
+            case_insensitive: true
+            multiline: true
+            additional_modifiers: ''
+
+        phpcsfixer:
+            allow_risky: ~
+            cache_file: ~
+            config: .php-cs-fixer.php
+            using_cache: ~
+            config_contains_finder: true
+            verbose: true
+            diff: false
+            triggered_by: ['php']
+
+        phplint:
+            exclude: []
+            jobs: ~
+            short_open_tag: false
+            ignore_patterns: []
+            triggered_by: ['php', 'phtml', 'php3', 'php4', 'php5']
+
+        yamllint:
+            whitelist_patterns: []
+            ignore_patterns: []
+            object_support: false
+            exception_on_invalid_type: false
+            parse_constant: false
+            parse_custom_tags: true
+
+        twigcs:
+            path: '.'
+            severity: 'warning'
+            display: 'all'
+            ruleset: 'FriendsOfTwig\Twigcs\Ruleset\Official'
+            triggered_by: ['twig']
+            exclude: []

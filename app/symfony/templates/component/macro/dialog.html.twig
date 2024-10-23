@@ -1,0 +1,13 @@
+{% macro dialog(id, videoUrl) %}
+    <a class="contrast" onclick="{{ 'modal_'~id }}.showModal()">Voir la bande annonce</a>
+
+    <dialog id="{{ 'modal_'~id }}">
+        <article>
+            <header>
+                <button aria-label="Close" rel="prev" onclick="{{ 'modal_'~id }}.close()"></button>
+            </header>
+
+            <iframe width="560" height="315" src="{{ videoUrl }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </article>
+    </dialog>
+{% endmacro %}

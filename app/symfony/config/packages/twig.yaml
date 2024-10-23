@@ -1,0 +1,9 @@
+twig:
+    file_name_pattern: '*.twig'
+    globals:
+        path_image_tmdb: 'https://image.tmdb.org/t/p/original'
+        path_image_tmdb_waiting: 'https://i.pinimg.com/originals/c2/3c/04/c23c04c861b9224b334f9917a3a41516.gif'
+
+when@test:
+    twig:
+        strict_variables: true

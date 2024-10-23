@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% import 'component/macro/star_rating.html.twig' as macros %}
+{% import 'component/macro/dialog.html.twig' as dialogMacros %}
+
+{% block title %}We Movies{% endblock %}
+
+{% block body %}
+    <nav>
+        <ul>
+            <li>
+                <u><h1>A propos de We Movies</h1></u>
+            </li>
+        </ul>
+        <ul class="sizedCategory">
+            <li class="sizedCategory">
+                {{ form_start(form) }}
+                    <div class="grid">
+                        <div class="">
+                            {{ form_row(form.categories) }}
+                        </div>
+                        <div class="">
+                            {{ form_row(form.query) }}
+                        </div>
+                        <div class="sizedCategoryButton">
+                            <button type="submit">Rechercher</button>
+                        </div>
+                    </div>
+                {{ form_end(form) }}
+            </li>
+        </ul>
+    </nav>
+
+    <hr>
+
+    <div class="container">
+        {% for movie in movies %}
+            <div class="grid">
+                <div class="col-4">
+                    <img
+                        src="{{ movie.poster_path is not empty ? path_image_tmdb ~ movie.poster_path : 'https://ih1.redbubble.net/image.760218647.2361/fposter,small,wall_texture,product,750x1000.jpg' }}"
+                        width="250"
+                        alt="{{ movie.title }}"
+                        class="img-responsive"
+                    />
+                </div>
+
+                <div class="col-8">
+                    <h3>{{ movie.title }}</h3>
+                    {{ macros.star_rating(movie.vote_average // 2) }}
+                    <p><strong>Release Date: </strong>{{ movie.release_date|date('d/m/Y') }} - Vôte {{ movie.vote_count }}</p>
+                    <p>
+                        {{ movie.overview }}
+                    </p>
+
+                    {% set videoUrl = getLinkToVideo(movie.id) %}
+
+                    {% if videoUrl %}
+                        {{ dialogMacros.dialog(movie.id, getLinkToVideo(movie.id)) }}
+                    {% endif %}
+
+                    <details>
+                        <p>{{ movie.overview }}</p>
+                    </details>
+                </div>
+            </div>
+            <hr>
+        {% endfor %}
+    </div>
+{% endblock %}
